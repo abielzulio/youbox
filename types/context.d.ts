@@ -12,11 +12,5 @@ export interface AuthContextType {
 }
 
 export interface AuthProviderProps {
-  /*   api: {
-    setUser: Dispatch<SetStateAction<User>>
-    login: (user: User) => Promise<void>
-    createUser: (user: User) => Promise<void>
-    signOut: () => Promise<void>
-  } */
   children: React.ReactNode
 }
