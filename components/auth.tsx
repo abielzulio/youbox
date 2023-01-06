@@ -1,7 +1,7 @@
 import AuthContext from "context/auth"
 import { usePersistentLogin } from "hooks/usePersistentLogin"
 import { useContext, useRef, useState } from "react"
-import { EditProfile } from "components/profile"
+import { EditProfile } from "components/profile/edit"
 
 export const Auth = () => {
   const [isRegistering, setIsRegistering] = useState<boolean>(false)
