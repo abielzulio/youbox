@@ -35,16 +35,16 @@ export const usePersistentLogin = (): {
         login({
           email: localStorage.getItem("email") || "",
           password: localStorage.getItem("password") || "",
+        }).catch((error) => {
+          setError(error.message)
         })
-          .then(() => setIsAuthLoading(false))
-          .catch((error) => {
-            setError(error.message)
-          })
       } else {
         localStorage.removeItem(LOGIN_STATUS_KEY)
         localStorage.removeItem(LOGIN_EXPIRATION_KEY)
       }
     }
+
+    setIsAuthLoading(false)
   }, [])
 
   const setPersistentLogin = ({
@@ -62,7 +62,6 @@ export const usePersistentLogin = (): {
           LOGIN_EXPIRATION_KEY,
           expirationTimestamp.toString()
         )
-        setIsAuthLoading(false)
       })
     } else {
       localStorage.removeItem(LOGIN_STATUS_KEY)
@@ -70,6 +69,7 @@ export const usePersistentLogin = (): {
       localStorage.removeItem("email")
       localStorage.removeItem("password")
     }
+    setIsAuthLoading(false)
   }
 
   return {
