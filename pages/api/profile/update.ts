@@ -10,7 +10,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const update = {
       $set: {
-        id,
         email,
         password,
         name,
