@@ -1,12 +1,17 @@
 import AuthContext from "context/auth"
-import { useContext, useRef } from "react"
+import { Dispatch, SetStateAction, useContext, useRef } from "react"
 
-const Profile = () => {
+export const EditProfile = ({
+  setShowModal,
+}: {
+  setShowModal: Dispatch<SetStateAction<boolean>>
+}) => {
   const emailInputRef = useRef<HTMLInputElement>(null)
   const nameInputRef = useRef<HTMLInputElement>(null)
   const passwordInputRef = useRef<HTMLInputElement>(null)
 
   const { user, signOut } = useContext(AuthContext)
+
   const updateProfileHandler = async (e: any, id: string): Promise<void> => {
     e.preventDefault()
     const email = emailInputRef?.current?.value
@@ -30,6 +35,7 @@ const Profile = () => {
         },
       }).then(() => {
         signOut()
+        setShowModal(false)
         return alert("Akun telah diperbarui, silahkan masuk lagi")
       })
     } catch (err) {
@@ -51,6 +57,7 @@ const Profile = () => {
         },
       }).then(() => {
         signOut()
+        setShowModal(false)
         return alert("Akun telah dihapus")
       })
     } catch (err) {
@@ -60,29 +67,39 @@ const Profile = () => {
 
   return (
     <>
-      <form onSubmit={(e) => user?._id && updateProfileHandler(e, user._id)}>
-        <div>
-          <label htmlFor="name">Nama Lengkap</label>
+      <form
+        className="flex flex-col gap-[10px]"
+        onSubmit={(e) => user?._id && updateProfileHandler(e, user._id)}
+      >
+        <div className="flex flex-col gap-[5px]">
+          <label htmlFor="name" className="text-sm">
+            Nama Lengkap
+          </label>
           <input
             type="name"
             id="name"
             required
             ref={nameInputRef}
             defaultValue={user?.name}
+            className="border-[1px] border-black h-[36px] pl-[12px]"
           />
         </div>
-        <div>
-          <label htmlFor="name">E-mail</label>
+        <div className="flex flex-col gap-[5px]">
+          <label htmlFor="email" className="text-sm">
+            E-mail
+          </label>
           <input
-            type="name"
-            id="name"
+            type="email"
+            id="email"
             required
             ref={emailInputRef}
             defaultValue={user?.email}
           />
         </div>
-        <div>
-          <label htmlFor="password">Your Password</label>
+        <div className="flex flex-col gap-[5px]">
+          <label htmlFor="password" className="text-sm">
+            Your Password
+          </label>
           <input
             type="password"
             id="password"
@@ -91,15 +108,18 @@ const Profile = () => {
             defaultValue={user?.password}
           />
         </div>
-        <div>
-          <button>Ubah</button>
+        <div className="mt-[5px]">
+          <button className="bg-black text-white py-[10px] w-full rounded-md text-sm">
+            Ubah
+          </button>
         </div>
       </form>
-      <button onClick={(e) => user?._id && deleteProfileHandler(e, user._id)}>
+      <button
+        className="opacity-50 text-sm hover:opacity-100 transition"
+        onClick={(e) => user?._id && deleteProfileHandler(e, user._id)}
+      >
         Hapus akun
       </button>
     </>
   )
 }
-
-export default Profile

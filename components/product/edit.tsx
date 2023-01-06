@@ -4,13 +4,15 @@ import { Product } from "types/data"
 const EditProduct = ({
   product,
   setProduct,
+  setShowEditable,
 }: {
   product: Product
   setProduct: Dispatch<SetStateAction<Product>>
+  setShowEditable: Dispatch<SetStateAction<boolean>>
 }) => {
   const nameInputRef = useRef<HTMLInputElement>(null)
   const priceInputRef = useRef<HTMLInputElement>(null)
-  const availableInputRef = useRef<HTMLInputElement>(null)
+  const availableInputRef = useRef<HTMLSelectElement>(null)
 
   const updateProductHandler = async (e: any, id: string): Promise<void> => {
     e.preventDefault()
@@ -41,6 +43,7 @@ const EditProduct = ({
           product_price: price,
           product_info: available,
         } as Product)
+        setShowEditable(false)
         return alert("Produk telah diperbarui")
       })
     } catch (err) {
@@ -49,30 +52,39 @@ const EditProduct = ({
   }
   return (
     <form
+      className="p-[12px] border-gray-500 border-[1px] rounded-lg flex flex-col gap-[10px]"
       onSubmit={(e) => product?._id && updateProductHandler(e, product._id)}
     >
-      <div>
-        <label htmlFor="name">Nama Produk</label>
+      <div className="flex flex-col gap-[5px]">
+        <label htmlFor="name" className="text-sm">
+          Nama Produk
+        </label>
         <input
           type="name"
           id="name"
+          className="border-[1px] border-black h-[36px] pl-[12px]"
           required
           ref={nameInputRef}
           defaultValue={product?.product_name}
         />
       </div>
-      <div>
-        <label htmlFor="price">Harga</label>
+      <div className="flex flex-col gap-[5px]">
+        <label htmlFor="price" className="text-sm">
+          Harga
+        </label>
         <input
           type="price"
           id="price"
           required
+          className="border-[1px] border-black h-[36px] pl-[12px]"
           ref={priceInputRef}
           defaultValue={product?.product_price}
         />
       </div>
-      <div>
-        <label htmlFor="available">Ketersediaan Stok</label>
+      <div className="flex flex-col gap-[5px]">
+        <label htmlFor="available" className="text-sm">
+          Ketersediaan Stok
+        </label>
         <select
           name="available"
           id="available"
@@ -81,10 +93,13 @@ const EditProduct = ({
         >
           <option value="Stok Habis">Stok Habis</option>
           <option value="Click & Pickup">Click & Pickup</option>
+          <option value="New">New</option>
         </select>
       </div>
-      <div>
-        <button>Ubah</button>
+      <div className="mt-[5px]">
+        <button className="bg-black text-white py-[10px] w-full rounded-md">
+          Simpan Edit
+        </button>
       </div>
     </form>
   )
