@@ -36,42 +36,69 @@ const Profile = () => {
       console.log(err)
     }
   }
+
+  const deleteProfileHandler = async (e: any, id: string) => {
+    e.preventDefault()
+
+    const body = JSON.stringify({ id })
+
+    try {
+      await fetch("/api/profile/delete", {
+        method: "POST",
+        body,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
+        signOut()
+        return alert("Akun telah dihapus")
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
-    <form onSubmit={(e) => user?._id && updateProfileHandler(e, user._id)}>
-      <div>
-        <label htmlFor="name">Nama Lengkap</label>
-        <input
-          type="name"
-          id="name"
-          required
-          ref={nameInputRef}
-          defaultValue={user?.name}
-        />
-      </div>
-      <div>
-        <label htmlFor="name">E-mail</label>
-        <input
-          type="name"
-          id="name"
-          required
-          ref={emailInputRef}
-          defaultValue={user?.email}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Your Password</label>
-        <input
-          type="password"
-          id="password"
-          required
-          ref={passwordInputRef}
-          defaultValue={user?.password}
-        />
-      </div>
-      <div>
-        <button>Ubah</button>
-      </div>
-    </form>
+    <>
+      <form onSubmit={(e) => user?._id && updateProfileHandler(e, user._id)}>
+        <div>
+          <label htmlFor="name">Nama Lengkap</label>
+          <input
+            type="name"
+            id="name"
+            required
+            ref={nameInputRef}
+            defaultValue={user?.name}
+          />
+        </div>
+        <div>
+          <label htmlFor="name">E-mail</label>
+          <input
+            type="name"
+            id="name"
+            required
+            ref={emailInputRef}
+            defaultValue={user?.email}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Your Password</label>
+          <input
+            type="password"
+            id="password"
+            required
+            ref={passwordInputRef}
+            defaultValue={user?.password}
+          />
+        </div>
+        <div>
+          <button>Ubah</button>
+        </div>
+      </form>
+      <button onClick={(e) => user?._id && deleteProfileHandler(e, user._id)}>
+        Hapus akun
+      </button>
+    </>
   )
 }
 
