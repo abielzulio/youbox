@@ -43,12 +43,7 @@ export const Auth = () => {
   }
 
   const signOutHandler = () => {
-    signOut(),
-      setPersistentLogin({
-        value: false,
-        expirationDuration: 0,
-        user: { email: "", password: "" },
-      })
+    signOut()
   }
   return (
     <>

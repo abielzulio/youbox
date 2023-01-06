@@ -1,3 +1,4 @@
+import { usePersistentLogin } from "hooks/usePersistentLogin"
 import React, { createContext, useState } from "react"
 import { AuthContextType, AuthProviderProps } from "types/context"
 import { User } from "types/data"
@@ -19,6 +20,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   const [user, setUser] = useState<User | null>(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [error, setError] = useState("")
+  const { setPersistentLogin } = usePersistentLogin()
 
   const login = async (user: User) => {
     const body = JSON.stringify(user)
@@ -87,6 +89,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   const signOut = async () => {
     try {
       await api.signOut()
+      setPersistentLogin({
+        value: false,
+        expirationDuration: 0,
+        user: { email: "", password: "" },
+      })
       setUser(null)
       setIsLoggedIn(false)
     } catch (err) {
