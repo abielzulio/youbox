@@ -9,8 +9,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const product = await db.collection("product").findOne({ id })
 
-    res.json(product)
-  } catch (e) {
-    console.error(e)
+    if (product) return res.status(200).json(product)
+
+    if (!product)
+      return res.status(500).json({ message: "Terdapat error di server!" })
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Terdapat error di sisi klien!", error })
   }
 }
