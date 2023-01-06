@@ -8,26 +8,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const skip = (page - 1) * pageSize
   const limit = pageSize
 
-  const search = req.query.search
-
-  const filter = {
-    $text: {
-      $search: search,
-    },
-  }
-
   try {
     const client = await clientPromise
     const db = client.db("main")
 
-    if (search)
-      return await db
-        .collection("product")
-        .createIndex({ product_name: "text" })
 
     const product = await db
       .collection("product")
-      .find(search ? filter : {})
+      .find({})
       .skip(skip)
       .limit(limit)
       .toArray()
