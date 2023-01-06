@@ -4,6 +4,7 @@ import { User } from "types/data"
 
 const api = {
   login: (user: User) => Promise.resolve(),
+  setUser: () => {},
   createUser: (user: User) => Promise.resolve(),
   signOut: () => Promise.resolve(),
 }
