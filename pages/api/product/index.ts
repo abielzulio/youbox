@@ -2,7 +2,7 @@ import clientPromise from "lib/mongodb"
 import { NextApiRequest, NextApiResponse } from "next"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const PAGE_SIZE = 20
+  const PAGE_SIZE = 15
 
   const page = Number(req.query.page) || 1
   const pageSize = Number(req.query.pageSize) || PAGE_SIZE
