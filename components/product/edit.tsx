@@ -11,7 +11,8 @@ const EditProduct = ({
   const nameInputRef = useRef<HTMLInputElement>(null)
   const priceInputRef = useRef<HTMLInputElement>(null)
   const availableInputRef = useRef<HTMLInputElement>(null)
-  const updateProductHandler = async (e: any, id: string) => {
+
+  const updateProductHandler = async (e: any, id: string): Promise<void> => {
     e.preventDefault()
 
     const name = nameInputRef?.current?.value
@@ -27,7 +28,7 @@ const EditProduct = ({
     const body = JSON.stringify(_new)
 
     try {
-      const res = await fetch("/api/product/update", {
+      await fetch("/api/product/update", {
         method: "POST",
         body,
         headers: {

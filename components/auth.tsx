@@ -10,9 +10,9 @@ export const Auth = () => {
 
   const { setPersistentLogin, isAuthLoading } = usePersistentLogin()
 
-  const { createUser, isLoggedIn, signOut, user } = useContext(AuthContext)
+  const { createUser, isLoggedIn, signOut } = useContext(AuthContext)
 
-  const logInHandler = async (e: any) => {
+  const logInHandler = async (e: any): Promise<void> => {
     e.preventDefault()
 
     const email = emailInputRef?.current?.value
@@ -28,7 +28,7 @@ export const Auth = () => {
     })
   }
 
-  const signUpHandler = async (e: any) => {
+  const signUpHandler = async (e: any): Promise<void> => {
     e.preventDefault()
 
     const email = emailInputRef?.current?.value
@@ -42,7 +42,7 @@ export const Auth = () => {
     createUser({ email, password, name })
   }
 
-  const signOutHandler = () => {
+  const signOutHandler = (): void => {
     signOut()
   }
   return (

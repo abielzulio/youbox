@@ -7,7 +7,7 @@ const Profile = () => {
   const passwordInputRef = useRef<HTMLInputElement>(null)
 
   const { user, signOut } = useContext(AuthContext)
-  const updateProfileHandler = async (e: any, id: string) => {
+  const updateProfileHandler = async (e: any, id: string): Promise<void> => {
     e.preventDefault()
     const email = emailInputRef?.current?.value
     const name = nameInputRef?.current?.value
@@ -22,7 +22,7 @@ const Profile = () => {
     const body = JSON.stringify(_new)
 
     try {
-      const res = await fetch("/api/profile/update", {
+      await fetch("/api/profile/update", {
         method: "POST",
         body,
         headers: {
@@ -37,7 +37,7 @@ const Profile = () => {
     }
   }
 
-  const deleteProfileHandler = async (e: any, id: string) => {
+  const deleteProfileHandler = async (e: any, id: string): Promise<void> => {
     e.preventDefault()
 
     const body = JSON.stringify({ id })
