@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (count === 1) {
       const user = await User.findOne(
         { email, password },
-        { password: 0, _id: 0, __v: 0 }
+        { password: 0, __v: 0 }
       )
       if (user) return res.status(200).json(user)
       if (!user) return res.status(403).json({ message: "Password Anda salah" })
