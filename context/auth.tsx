@@ -14,8 +14,9 @@ const AuthContext = createContext<AuthContextType>({
 })
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({
-  api,
   children,
+}: {
+  children: React.ReactNode
 }) => {
   const [user, setUser] = useState<User | null>(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -88,7 +89,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
 
   const signOut = async () => {
     try {
-      await api.signOut()
       setPersistentLogin({
         value: false,
         expirationDuration: 0,
