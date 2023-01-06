@@ -6,6 +6,7 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   isLoggedIn: false,
   error: "",
+  setUser: () => {},
   login: () => Promise.resolve(),
   createUser: () => Promise.resolve(),
   signOut: () => Promise.resolve(),
@@ -95,7 +96,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
 
   return (
     <AuthContext.Provider
-      value={{ user, isLoggedIn, error, login, createUser, signOut }}
+      value={{ user, isLoggedIn, error, setUser, login, createUser, signOut }}
     >
       {children}
     </AuthContext.Provider>
