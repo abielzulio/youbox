@@ -1,4 +1,4 @@
-import User from "lib/model/user"
+import User from "model/user"
 import dbConnect from "lib/mongoose"
 import { NextApiRequest, NextApiResponse } from "next"
 
