@@ -8,3 +8,11 @@ export interface Product {
   product_info: string
   real_pdp_url: string
 }
+
+export interface User {
+  email: string
+  password: string
+  name?: string
+  role?: "admin" | "user"
+  createdAt?: Date
+}
