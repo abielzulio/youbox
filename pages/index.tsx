@@ -99,7 +99,7 @@ export const getServerSideProps: GetServerSideProps<{
   page: number
   totalPages: number
 }> = async (context) => {
-  const { page = 1 } = context.query
+  const page = context.query?.page ?? 1
   const res = await fetch(`http://localhost:3000/api/product?page=${page}`)
   const data: { products: Product[]; pages: number } = await res.json()
   return {

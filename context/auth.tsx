@@ -37,9 +37,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
           "Content-Type": "application/json",
         },
       })
-      data = (await res.json()) satisfies User
+      data = (await res.json()) as User
     } catch (err) {
-      setError(err)
+      setError(err as string)
     }
 
     if (res?.ok) {
@@ -69,9 +69,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
           "Content-Type": "application/json",
         },
       })
-      data = (await res.json()) satisfies User
+      data = (await res.json()) as User
     } catch (err) {
-      setError(err)
+      setError(err as string)
     }
 
     if (res?.ok) {
@@ -97,7 +97,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
       setUser(null)
       setIsLoggedIn(false)
     } catch (err) {
-      setError(err)
+      setError(err as string)
     }
   }
 

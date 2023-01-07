@@ -74,7 +74,7 @@ export default ProductPage
 export const getServerSideProps: GetServerSideProps<{
   product: Product
 }> = async (context) => {
-  const { id } = context.params
+  const id = context.params?.id
   const res = await fetch(`http://localhost:3000/api/product/${id}`)
   const product: Product = await res.json()
   return {
