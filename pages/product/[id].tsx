@@ -37,13 +37,13 @@ const ProductPage: React.FC<{ product: Product }> = ({ product }) => {
               </p>
               {localProduct?.product_info === "Stok Habis" && (
                 <p className="text-sm text-red-500 bg-red-100 px-[15px] mr-auto py-[3px] rounded-full border-[1px] border-red-500">
-                  {product.product_info}
+                  {localProduct?.product_info}
                 </p>
               )}
               {(localProduct?.product_info === "Click & Pickup" ||
                 localProduct?.product_info === "New") && (
                 <p className="text-sm text-blue-500 bg-blue-100 px-[15px] mr-auto py-[3px] rounded-full border-[1px] border-blue-500">
-                  {product.product_info}
+                  {localProduct?.product_info}
                 </p>
               )}
             </div>
