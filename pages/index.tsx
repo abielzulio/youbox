@@ -100,7 +100,7 @@ export const getServerSideProps: GetServerSideProps<{
   totalPages: number
 }> = async (context) => {
   const page = context.query?.page ?? 1
-  const res = await fetch(`http://localhost:3000/api/product?page=${page}`)
+  const res = await fetch(`http://youbox.vercel.app/api/product?page=${page}`)
   const data: { products: Product[]; pages: number } = await res.json()
   return {
     props: {
