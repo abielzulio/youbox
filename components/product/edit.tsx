@@ -88,6 +88,7 @@ const EditProduct = ({
         <select
           name="available"
           id="available"
+          className="border-[1px] border-black h-[36px] pl-[12px]"
           defaultValue={product?.product_info}
           ref={availableInputRef}
         >
