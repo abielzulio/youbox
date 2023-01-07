@@ -103,7 +103,13 @@ export const Auth = () => {
                 <label htmlFor="email" className="text-sm">
                   Your Email
                 </label>
-                <input type="email" id="email" required ref={emailInputRef} />
+                <input
+                  type="email"
+                  id="email"
+                  className="border-[1px] border-black h-[36px] pl-[12px]"
+                  required
+                  ref={emailInputRef}
+                />
               </div>
               <div className="flex flex-col gap-[5px]">
                 <label htmlFor="password" className="text-sm">
@@ -113,6 +119,7 @@ export const Auth = () => {
                   type="password"
                   id="password"
                   required
+                  className="border-[1px] border-black h-[36px] pl-[12px]"
                   ref={passwordInputRef}
                 />
               </div>

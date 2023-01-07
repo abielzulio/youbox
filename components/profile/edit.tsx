@@ -92,6 +92,7 @@ export const EditProfile = ({
             type="email"
             id="email"
             required
+            className="border-[1px] border-black h-[36px] pl-[12px]"
             ref={emailInputRef}
             defaultValue={user?.email}
           />
@@ -104,6 +105,7 @@ export const EditProfile = ({
             type="password"
             id="password"
             required
+            className="border-[1px] border-black h-[36px] pl-[12px]"
             ref={passwordInputRef}
             defaultValue={user?.password}
           />
